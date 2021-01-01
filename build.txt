@@ -1,0 +1,3 @@
+displayName = Clicker Class Expansion
+author = convicted tomatophile (Stevie), <pending>
+version = 0.1
