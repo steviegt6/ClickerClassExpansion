@@ -1,4 +1,4 @@
-displayName = Clicker Class Expansion
+displayName = The Clicker Class Expansion
 author = convicted tomatophile (Stevie), <pending>
 version = 1.0.0
 modReferences = ClickerClass@1.2.4

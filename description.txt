@@ -1,1 +1,9 @@
-Clicker Class Expansion is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+The Clicker Class Expansion expands on The Clicker Class' joke set of weapons, accessories, armor, and potions by adding mod support, allowing for more fun whilst playing with other content mods.
+
+Included:
+ - Support for: <pending>
+ +<pending> new clicker weapons
+ +<pending> new clicker accessories
+ +<pending> new clicker armor sets
+ +<pending> new clicker buff potions
+ +<pending hilarious joke about clicking>
