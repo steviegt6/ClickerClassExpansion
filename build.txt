@@ -3,4 +3,5 @@ author = convicted tomatophile (Stevie), <pending>
 version = 1.0.0
 sortAfter = ClickerClass, ThoriumMod, Redemption, CalamityMod, SacredTools
 modReferences = ClickerClass@1.2.4
+weakReferences = CalamityMod@1.4.5.7, Redemption@0.7.9.62, SacredTools@1.1.1.4, ThoriumMod@1.6.3.13
 dllReferences = ClickerClass_v1.2.4
