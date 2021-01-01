@@ -16,4 +16,9 @@
   <ItemGroup>
     <Folder Include="lib\" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ClickerClass">
+      <HintPath>lib\ClickerClass_v1.2.4.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
