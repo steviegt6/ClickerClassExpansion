@@ -12,7 +12,6 @@ namespace ClickerClassExpansion.Content
         public sealed override void SetStaticDefaults()
         {
             ClickerSystem.RegisterClickerWeapon(this);
-
             SafeSetStaticDefaults();
         }
 
