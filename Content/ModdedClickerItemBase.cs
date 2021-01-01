@@ -1,10 +1,26 @@
 ﻿using ClickerClass;
 using ClickerClass.Items;
+using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Content
 {
     public abstract class ModdedClickerItemBase : ClickerItem
     {
+        // If no image for our item is found, use Clicker Class' The Clicker item.
+        public override string Texture
+        {
+            get
+            {
+                if (ModContent.GetTexture(base.Texture) != null)
+                    return base.Texture;
+                else
+                {
+                    mod.Logger.Warn($"Item image for {Name} not found! Falling back to ClickerClass' \"The Clicker\"...");
+                    return "ClickerClass/Items/Weapons/Clickers/TheClicker";
+                }
+            }
+        }
+
         public override bool Autoload(ref string name) => ClickerClassExpansion.ClickerClass.IsLoaded && ModDependencyIsLoaded;
 
         public virtual bool ModDependencyIsLoaded => true;
