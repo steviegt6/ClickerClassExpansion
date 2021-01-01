@@ -1,5 +1,6 @@
 displayName = The Clicker Class Expansion
 author = convicted tomatophile (Stevie), <pending>
 version = 1.0.0
+sortAfter = ClickerClass, ThoriumMod, Redemption, CalamityMod, SacredTools
 modReferences = ClickerClass@1.2.4
 dllReferences = ClickerClass_v1.2.4
