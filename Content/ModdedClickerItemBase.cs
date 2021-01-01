@@ -5,7 +5,9 @@ namespace ClickerClassExpansion.Content
 {
     public abstract class ModdedClickerItemBase : ClickerItem
     {
-        public override bool Autoload(ref string name) => ClickerClassExpansion.ClickerClass.IsLoaded;
+        public override bool Autoload(ref string name) => ClickerClassExpansion.ClickerClass.IsLoaded && ModDependencyIsLoaded;
+
+        public virtual bool ModDependencyIsLoaded => true;
 
         public sealed override void SetStaticDefaults()
         {
