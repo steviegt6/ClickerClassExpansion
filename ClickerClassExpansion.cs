@@ -13,17 +13,17 @@ namespace ClickerClassExpansion
 
         public static ClickerClassCompatibility ClickerClass { get; private set; } = new ClickerClassCompatibility();
 
-        public static CalamityModCompatibility CalamityMod { get; private set; }
+        public static CalamityModCompatibility CalamityMod { get; private set; } = new CalamityModCompatibility();
 
-        public static RedemptionCompatibility Redemption { get; private set; }
+        public static RedemptionCompatibility Redemption { get; private set; } = new RedemptionCompatibility();
 
-        public static SacredToolsCompatibility SacredTools { get; private set; }
+        public static SacredToolsCompatibility SacredTools { get; private set; } = new SacredToolsCompatibility();
 
-        public static ThoriumModCompatibility ThoriumMod { get; private set; }
+        public static ThoriumModCompatibility ThoriumMod { get; private set; } = new ThoriumModCompatibility();
 
         public override void Load()
         {
-            LoadCompatibilities();
+            CheckCompatibilities();
         }
 
         public override void Unload()
@@ -31,15 +31,9 @@ namespace ClickerClassExpansion
             UnloadStaticFields();
         }
 
-        private static void LoadCompatibilities()
+        private static void CheckCompatibilities()
         {
             Mod mod = ModContent.GetInstance<ClickerClassExpansion>();
-            // Needs to be loaded immediately: ClickerClass = new ClickerClassCompatibility();
-
-            CalamityMod = new CalamityModCompatibility();
-            Redemption = new RedemptionCompatibility();
-            SacredTools = new SacredToolsCompatibility();
-            ThoriumMod = new ThoriumModCompatibility();
 
             if (CalamityMod.IsLoaded)
                 mod.Logger.Info("CalamityMod (Calamity) has been detected. Calamity content will be loaded.");
