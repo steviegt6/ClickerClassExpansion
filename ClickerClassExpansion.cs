@@ -51,6 +51,11 @@ namespace ClickerClassExpansion
         private static void UnloadStaticFields()
         {
             ClickerClassVersion = null;
+            ClickerClass = null;
+            CalamityMod = null;
+            Redemption = null;
+            SacredTools = null;
+            ThoriumMod = null;
         }
     }
 }
