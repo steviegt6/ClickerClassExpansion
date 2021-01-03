@@ -13,30 +13,23 @@ namespace ClickerClassExpansion
         /// </summary>
         public Version ClickerClassVersion { get; }
 
-        public ClickerClassCompatibility ClickerClass { get; }
+        public ClickerClassCompatibility ClickerClass = new ClickerClassCompatibility();
 
-        public GenericCompatibility CalamityMod { get; }
+        public GenericCompatibility CalamityMod = new GenericCompatibility("CalamityMod");
 
-        public GenericCompatibility Redemption { get; }
+        public GenericCompatibility Redemption = new GenericCompatibility("Redemption");
 
-        public GenericCompatibility SacredTools { get; }
+        public GenericCompatibility SacredTools = new GenericCompatibility("SacredTools");
 
-        public GenericCompatibility ThoriumMod { get; }
+        public GenericCompatibility ThoriumMod = new GenericCompatibility("ThoriumMod");
 
-        public GenericCompatibility SpiritMod { get; }
+        public GenericCompatibility SpiritMod = new GenericCompatibility("SpiritMod");
 
         public ClickerClassExpansion()
         {
             Instance = this;
 
             ClickerClassVersion = new Version(1, 2, 5);
-
-            ClickerClass = new ClickerClassCompatibility();
-            CalamityMod = new GenericCompatibility("CalamityMod");
-            Redemption = new GenericCompatibility("Redemption");
-            SacredTools = new GenericCompatibility("SacredTools");
-            ThoriumMod = new GenericCompatibility("ThoriumMod");
-            SpiritMod = new GenericCompatibility("SpiritMod");
         }
 
         public override void Load()
