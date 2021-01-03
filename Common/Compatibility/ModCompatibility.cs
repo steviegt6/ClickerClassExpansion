@@ -12,9 +12,11 @@ namespace ClickerClassExpansion.Common.Compatibility
         {
             Mod = ModLoader.GetMod(mod);
             IsLoaded = Mod != null;
+
+            Load(true);
         }
 
-        public virtual void Load()
+        public virtual void Load(bool isFromCtor)
         {
         }
 

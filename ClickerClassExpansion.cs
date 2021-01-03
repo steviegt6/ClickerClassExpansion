@@ -6,56 +6,64 @@ namespace ClickerClassExpansion
 {
     public class ClickerClassExpansion : Mod
     {
+        public static ClickerClassExpansion Instance { get; private set; }
+
         /// <summary>
         /// This version of clicker class expansion is built and made for Clicker Class v1.2.4!
         /// </summary>
-        public static Version ClickerClassVersion { get; private set; } = new Version(1, 2, 4);
+        public Version ClickerClassVersion { get; }
 
-        public static ClickerClassCompatibility ClickerClass { get; private set; } = new ClickerClassCompatibility();
+        public ClickerClassCompatibility ClickerClass { get; }
 
-        public static CalamityModCompatibility CalamityMod { get; private set; } = new CalamityModCompatibility();
+        public GenericCompatibility CalamityMod { get; }
 
-        public static RedemptionCompatibility Redemption { get; private set; } = new RedemptionCompatibility();
+        public GenericCompatibility Redemption { get; }
 
-        public static SacredToolsCompatibility SacredTools { get; private set; } = new SacredToolsCompatibility();
+        public GenericCompatibility SacredTools { get; }
 
-        public static ThoriumModCompatibility ThoriumMod { get; private set; } = new ThoriumModCompatibility();
+        public GenericCompatibility ThoriumMod { get; }
+
+        public GenericCompatibility SpiritMod { get; }
+
+        public ClickerClassExpansion()
+        {
+            Instance = this;
+
+            ClickerClassVersion = new Version(1, 2, 5);
+
+            ClickerClass = new ClickerClassCompatibility();
+            CalamityMod = new GenericCompatibility("CalamityMod");
+            Redemption = new GenericCompatibility("Redemption");
+            SacredTools = new GenericCompatibility("SacredTools");
+            ThoriumMod = new GenericCompatibility("ThoriumMod");
+            SpiritMod = new GenericCompatibility("SpiritMod");
+        }
 
         public override void Load()
         {
+            if (ClickerClass.Mod.Version != ClickerClassVersion)
+                Logger.Warn("This build of ClickerClassExpansion was not made for your current version of ClickerClass!" +
+                    "\nSome incompatibilities or other issues may occur!");
+
             CheckCompatibilities();
         }
 
-        public override void Unload()
+        private void CheckCompatibilities()
         {
-            UnloadStaticFields();
-        }
-
-        private static void CheckCompatibilities()
-        {
-            Mod mod = ModContent.GetInstance<ClickerClassExpansion>();
-
             if (CalamityMod.IsLoaded)
-                mod.Logger.Info("CalamityMod (Calamity) has been detected. Calamity content will be loaded.");
+                Logger.Info("CalamityMod (Calamity) has been detected. Calamity content will be loaded.");
 
             if (Redemption.IsLoaded)
-                mod.Logger.Info("Redemption (Mod of Redemption) has been detected. MoR content will be loaded.");
+                Logger.Info("Redemption (Mod of Redemption) has been detected. MoR content will be loaded.");
 
             if (SacredTools.IsLoaded)
-                mod.Logger.Info("SacredTools (Shadows of Abaddon) has been detected. SoA content will be loaded.");
+                Logger.Info("SacredTools (Shadows of Abaddon) has been detected. SoA content will be loaded.");
 
             if (ThoriumMod.IsLoaded)
-                mod.Logger.Info("ThoriumMod (Thorium) has been detected. Thorium content will be loaded.");
-        }
+                Logger.Info("ThoriumMod (Thorium) has been detected. Thorium content will be loaded.");
 
-        private static void UnloadStaticFields()
-        {
-            ClickerClassVersion = null;
-            ClickerClass = null;
-            CalamityMod = null;
-            Redemption = null;
-            SacredTools = null;
-            ThoriumMod = null;
+            if (SpiritMod.IsLoaded)
+                Logger.Info("SpiritMod (Spirit) has been detected. Spirit content will be loaded.");
         }
     }
 }

@@ -17,8 +17,17 @@
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CalamityMod">
+      <HintPath>lib\CalamityMod_v1.4.5.7.dll</HintPath>
+    </Reference>
     <Reference Include="ClickerClass">
       <HintPath>lib\ClickerClass_v1.2.4.dll</HintPath>
+    </Reference>
+    <Reference Include="Redemption">
+      <HintPath>lib\Redemption_v0.7.9.62.dll</HintPath>
+    </Reference>
+    <Reference Include="SacredTools">
+      <HintPath>lib\SacredTools_v1.1.1.4.dll</HintPath>
     </Reference>
     <Reference Include="ThoriumMod">
       <HintPath>lib\ThoriumMod_v1.6.3.13.dll</HintPath>
