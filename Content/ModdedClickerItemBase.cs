@@ -1,5 +1,6 @@
 ﻿using ClickerClass;
 using ClickerClass.Items;
+using ClickerClassExpansion.Common.Compatibility;
 using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Content
@@ -11,7 +12,7 @@ namespace ClickerClassExpansion.Content
         {
             get
             {
-                if (ModContent.GetTexture(base.Texture) != null)
+                if (mod.TextureExists(base.Texture))
                     return base.Texture;
                 else
                 {
@@ -27,7 +28,7 @@ namespace ClickerClassExpansion.Content
 
         public sealed override void SetStaticDefaults()
         {
-            ClickerSystem.RegisterClickerWeapon(this);
+            ClickerCompatibilityCalls.RegisterClickerWeapon(this);
             SafeSetStaticDefaults();
         }
 
@@ -40,7 +41,7 @@ namespace ClickerClassExpansion.Content
 
         public sealed override void SetDefaults()
         {
-            ClickerSystem.SetClickerWeaponDefaults(item);
+            ClickerCompatibilityCalls.SetClickerWeaponDefaults(item);
             SafeSetDefaults();
         }
 
