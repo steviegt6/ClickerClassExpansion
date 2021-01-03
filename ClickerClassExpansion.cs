@@ -11,9 +11,7 @@ namespace ClickerClassExpansion
         /// <summary>
         /// This version of clicker class expansion is built and made for Clicker Class v1.2.4!
         /// </summary>
-        public Version ClickerClassVersion { get; }
-
-        public ClickerClassCompatibility ClickerClass = new ClickerClassCompatibility();
+        public readonly Version ClickerClassVersion = new Version(1, 2, 5);
 
         public GenericCompatibility CalamityMod = new GenericCompatibility("CalamityMod");
 
@@ -28,21 +26,25 @@ namespace ClickerClassExpansion
         public ClickerClassExpansion()
         {
             Instance = this;
-
-            ClickerClassVersion = new Version(1, 2, 5);
         }
 
         public override void Load()
         {
-            if (ClickerClass.Mod.Version != ClickerClassVersion)
+            LoadCompatibilities();
+
+            if (ModLoader.GetMod("ClickerClass").Version != ClickerClassVersion)
                 Logger.Warn("This build of ClickerClassExpansion was not made for your current version of ClickerClass!" +
                     "\nSome incompatibilities or other issues may occur!");
-
-            CheckCompatibilities();
         }
 
-        private void CheckCompatibilities()
+        private void LoadCompatibilities()
         {
+            CalamityMod = new GenericCompatibility("CalamityMod");
+            Redemption = new GenericCompatibility("Redemption");
+            SacredTools = new GenericCompatibility("SacredTools");
+            ThoriumMod = new GenericCompatibility("ThoriumMod");
+            SpiritMod = new GenericCompatibility("SpiritMod");
+
             if (CalamityMod.IsLoaded)
                 Logger.Info("CalamityMod (Calamity) has been detected. Calamity content will be loaded.");
 

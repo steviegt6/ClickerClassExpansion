@@ -21,7 +21,7 @@ namespace ClickerClassExpansion.Content
             }
         }
 
-        public override bool Autoload(ref string name) => ClickerClassExpansion.Instance.ClickerClass.IsLoaded && ModDependencyIsLoaded;
+        public override bool Autoload(ref string name) => ModLoader.GetMod("ClickerClass") != null && ModDependencyIsLoaded;
 
         public virtual bool ModDependencyIsLoaded => true;
 
