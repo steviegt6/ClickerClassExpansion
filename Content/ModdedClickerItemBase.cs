@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Content
 {
-    public abstract class ModdedClickerItemBase : ClickerItem
+    public abstract class ModdedClickerItemBase : ModItem
     {
         // If no image for our item is found, use Clicker Class' The Clicker item.
         public override string Texture

@@ -1,6 +1,6 @@
 ﻿namespace ClickerClassExpansion.Content.ThoriumMod.Weapons
 {
-    public class TheBlackClicker : ModdedClickerItemBase
+    public class TheBlackClicker : ThoriumClickerItem
     {
     }
 }

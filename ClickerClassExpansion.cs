@@ -13,15 +13,15 @@ namespace ClickerClassExpansion
         /// </summary>
         public readonly Version ClickerClassVersion = new Version(1, 2, 5);
 
-        public GenericCompatibility CalamityMod = new GenericCompatibility("CalamityMod");
+        public GenericCompatibility CalamityMod;
 
-        public GenericCompatibility Redemption = new GenericCompatibility("Redemption");
+        public GenericCompatibility Redemption;
 
-        public GenericCompatibility SacredTools = new GenericCompatibility("SacredTools");
+        public GenericCompatibility SacredTools;
 
-        public GenericCompatibility ThoriumMod = new GenericCompatibility("ThoriumMod");
+        public GenericCompatibility ThoriumMod;
 
-        public GenericCompatibility SpiritMod = new GenericCompatibility("SpiritMod");
+        public GenericCompatibility SpiritMod;
 
         public ClickerClassExpansion()
         {
