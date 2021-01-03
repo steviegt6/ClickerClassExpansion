@@ -21,7 +21,7 @@
       <HintPath>lib\CalamityMod_v1.4.5.7.dll</HintPath>
     </Reference>
     <Reference Include="ClickerClass">
-      <HintPath>lib\ClickerClass_v1.2.4.dll</HintPath>
+      <HintPath>lib\ClickerClass_v1.2.5.dll</HintPath>
     </Reference>
     <Reference Include="Redemption">
       <HintPath>lib\Redemption_v0.7.9.62.dll</HintPath>
