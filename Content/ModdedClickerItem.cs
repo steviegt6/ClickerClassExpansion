@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Content
 {
-    public abstract class ModdedClickerItemBase : ModItem
+    public abstract class ModdedClickerItem : ModItem
     {
         // If no image for our item is found, use Clicker Class' The Clicker item.
         public override string Texture
@@ -12,17 +12,18 @@ namespace ClickerClassExpansion.Content
             {
                 if (mod.TextureExists(base.Texture))
                     return base.Texture;
-                else
-                {
-                    mod.Logger.Warn($"Item image for {Name} not found! Falling back to ClickerClass' \"The Clicker\"...");
-                    return "ClickerClass/Items/Weapons/Clickers/TheClicker";
-                }
+
+                mod.Logger.Warn($"Item image for {Name} not found! Falling back to ClickerClass' \"The Clicker\"...");
+
+                return "ClickerClass/Items/Weapons/Clickers/TheClicker";
             }
         }
 
         public override bool Autoload(ref string name) => ModLoader.GetMod("ClickerClass") != null && ModDependencyIsLoaded;
 
-        public virtual bool ModDependencyIsLoaded => true;
+        public virtual ModCompatibility ModDependency => null;
+
+        public virtual bool ModDependencyIsLoaded => ModDependency?.IsLoaded ?? true;
 
         public sealed override void SetStaticDefaults()
         {
@@ -30,17 +31,17 @@ namespace ClickerClassExpansion.Content
             SafeSetStaticDefaults();
         }
 
+        public sealed override void SetDefaults()
+        {
+            ClickerCompatibilityCalls.SetClickerWeaponDefaults(item);
+            SafeSetDefaults();
+        }
+
         /// <summary>
         /// This is where you set all your item's static properties, such as names/translations and arrays in ItemID.Sets. This is called after SetDefaults on the initial ModItem.
         /// </summary>
         public virtual void SafeSetStaticDefaults()
         {
-        }
-
-        public sealed override void SetDefaults()
-        {
-            ClickerCompatibilityCalls.SetClickerWeaponDefaults(item);
-            SafeSetDefaults();
         }
 
         /// <summary>

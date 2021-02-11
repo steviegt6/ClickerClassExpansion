@@ -3,9 +3,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ThoriumMod.Buffs;
-using ThoriumMod.Dusts;
-using ThoriumMod.Utilities;
 
 namespace ClickerClassExpansion.Content.ThoriumMod.Weapons
 {
