@@ -1,6 +1,4 @@
-﻿using ClickerClass;
-using ClickerClass.Items;
-using ClickerClassExpansion.Common.Compatibility;
+﻿using ClickerClassExpansion.Common.Compatibility;
 using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Content

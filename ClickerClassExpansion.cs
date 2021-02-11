@@ -1,6 +1,12 @@
 using ClickerClassExpansion.Common.Compatibility;
+using ClickerClassExpansion.Content.ThoriumMod.Weapons;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
+using System.Reflection;
 using Terraria.ModLoader;
+using ThoriumMod.Contracts;
 
 namespace ClickerClassExpansion
 {
@@ -13,15 +19,12 @@ namespace ClickerClassExpansion
         /// </summary>
         public readonly Version ClickerClassVersion = new Version(1, 2, 5);
 
-        public GenericCompatibility CalamityMod;
-
-        public GenericCompatibility Redemption;
-
-        public GenericCompatibility SacredTools;
-
-        public GenericCompatibility ThoriumMod;
-
-        public GenericCompatibility SpiritMod;
+        internal Mod calamityMod;
+        internal Mod clickerClass;
+        internal Mod redemption;
+        internal Mod sacredTools;
+        internal Mod spiritMod;
+        internal Mod thoriumMod;
 
         public ClickerClassExpansion()
         {
@@ -37,28 +40,48 @@ namespace ClickerClassExpansion
                     "\nSome incompatibilities or other issues may occur!");
         }
 
+        public override void PostSetupContent()
+        {
+            if (thoriumMod != null)
+                ModifyContracts();
+        }
+
         private void LoadCompatibilities()
         {
-            CalamityMod = new GenericCompatibility("CalamityMod");
-            Redemption = new GenericCompatibility("Redemption");
-            SacredTools = new GenericCompatibility("SacredTools");
-            ThoriumMod = new GenericCompatibility("ThoriumMod");
-            SpiritMod = new GenericCompatibility("SpiritMod");
+            calamityMod = ModLoader.GetMod("CalamityMod");
+            clickerClass = ModLoader.GetMod("ClickerClass");
+            redemption = ModLoader.GetMod("Redemption");
+            sacredTools = ModLoader.GetMod("SacredTools");
+            spiritMod = ModLoader.GetMod("SpiritMod");
+            thoriumMod = ModLoader.GetMod("ThoriumMod");
 
-            if (CalamityMod.IsLoaded)
+            if (calamityMod != null)
                 Logger.Info("CalamityMod (Calamity) has been detected. Calamity content will be loaded.");
 
-            if (Redemption.IsLoaded)
+            if (redemption != null)
                 Logger.Info("Redemption (Mod of Redemption) has been detected. MoR content will be loaded.");
 
-            if (SacredTools.IsLoaded)
+            if (sacredTools != null)
                 Logger.Info("SacredTools (Shadows of Abaddon) has been detected. SoA content will be loaded.");
 
-            if (ThoriumMod.IsLoaded)
+            if (spiritMod != null)
                 Logger.Info("ThoriumMod (Thorium) has been detected. Thorium content will be loaded.");
 
-            if (SpiritMod.IsLoaded)
+            if (thoriumMod != null)
                 Logger.Info("SpiritMod (Spirit) has been detected. Spirit content will be loaded.");
+        }
+
+        private void ModifyContracts()
+        {
+            List<MonsterContract> contractList = thoriumMod.Code.GetType("ThoriumMod.Contracts.ContractVault").GetField("Contracts", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as List<MonsterContract>;
+
+            // Bone Lee contract
+            MonsterContract boneLeeContract = contractList.FirstOrDefault(contract => contract.Title == "Tracker's End");
+
+            List<ContractReward> boneLeeRewardList = boneLeeContract.Rewards.ToList();
+            boneLeeRewardList.Add(new ContractReward(ModContent.ItemType<TheBlackClicker>(), 25));
+
+            typeof(MonsterContract).GetProperty("Rewards", BindingFlags.Instance | BindingFlags.Public).SetValue(boneLeeContract, boneLeeRewardList.ToArray());
         }
     }
 }
