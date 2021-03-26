@@ -1,6 +1,5 @@
 displayName = The Clicker Class Expansion
-author = convicted tomatophile (Stevie), <pending>
+author = convicted tomatophile (Stevie), Citrus, Feedza
 version = 1.0.0
-sortAfter = ClickerClass, ThoriumMod, Redemption, CalamityMod, SacredTools, SpiritMod
+sortAfter = ClickerClass
 modReferences = ClickerClass@1.2.5
-weakReferences = CalamityMod@1.4.5.7, Redemption@0.7.9.62, SacredTools@1.1.1.4, ThoriumMod@1.6.3.13, SpiritMod@1.4.1.3

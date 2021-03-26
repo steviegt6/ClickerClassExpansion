@@ -6,46 +6,26 @@ using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Common.Compatibility
 {
-    // Copy this file for your mod, change the namespace above to yours, and read the comments
     /// <summary>
     /// Central file used for mod.Call wrappers.
     /// </summary>
     public static class ClickerCompatibilityCalls
     {
-        //GENERAL INFO - PLEASE READ THIS FIRST!
-        //-----------------------
-        //https://github.com/SamsonAllen13/ClickerClassExampleMod/wiki
-        //
-        //This file is kept up-to-date to the latest Clicker Class release. You are encouraged to not edit this file, and when an update happens, copy&replace this file again.
-        //Nothing will happen if Clicker Class updates and your mod doesn't, it's your choice to update it further
-        //-----------------------
-
-        //This is the version of the calls that are used for the mod.
-        //If Clicker Class updates, it will keep working on the outdated calls, but new features might not be available
-        internal static readonly Version apiVersion = new Version(1, 2, 5);
+        internal static readonly Version APIVersion = new Version(1, 2, 5);
 
         internal static string versionString;
 
-        private static Mod clickerClass;
+        private static Mod _clickerClass;
 
-        internal static Mod ClickerClass
-        {
-            get
-            {
-                if (clickerClass == null)
-                    clickerClass = ModLoader.GetMod("ClickerClass");
-
-                return clickerClass;
-            }
-        }
+        internal static Mod ClickerClass => _clickerClass ?? (_clickerClass = ModLoader.GetMod("ClickerClass"));
 
         //Call this in your main Mod class in the Load hook like this: ClickerCompat.Load();
-        internal static void Load() => versionString = apiVersion.ToString();
+        internal static void Load() => versionString = APIVersion.ToString();
 
         //Call this in your main Mod class in the Unload hook like this: ClickerCompat.Unload();
         internal static void Unload()
         {
-            clickerClass = null;
+            _clickerClass = null;
             versionString = null;
         }
 

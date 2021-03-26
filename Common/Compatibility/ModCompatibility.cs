@@ -31,17 +31,35 @@ namespace ClickerClassExpansion.Common.Compatibility
             _name = mod.Name;
         }
 
-        public virtual void Load()
+        public void TryLoad()
         {
+            if (Instance != null)
+                Load();
+            else
+                ClickerClassExpansion.Instance.Logger.Debug($"Unable to load ModCompability: {ToString()}");
         }
 
-        public virtual void SetupContent()
+        public void TrySetupContent()
         {
+            if (Instance != null)
+                SetupContent();
+            else
+                ClickerClassExpansion.Instance.Logger.Debug($"Unable to setup ModCompability: {ToString()}");
         }
 
-        public virtual void Unload()
+        public void TryUnload()
         {
+            if (Instance != null)
+                Unload();
+            else
+                ClickerClassExpansion.Instance.Logger.Debug($"Unable to unload ModCompability: {ToString()}");
         }
+
+        public virtual void Load() { }
+
+        public virtual void SetupContent() { }
+
+        public virtual void Unload() { }
 
         public override string ToString() => _name;
     }

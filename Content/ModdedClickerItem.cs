@@ -1,4 +1,6 @@
 ﻿using ClickerClassExpansion.Common.Compatibility;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ClickerClassExpansion.Content
@@ -10,20 +12,16 @@ namespace ClickerClassExpansion.Content
         {
             get
             {
-                if (mod.TextureExists(base.Texture))
+                if (ModContent.TextureExists(base.Texture))
                     return base.Texture;
 
-                mod.Logger.Warn($"Item image for {Name} not found! Falling back to ClickerClass' \"The Clicker\"...");
+                mod.Logger.Warn($"Item image for {Name} ({base.Texture}) not found! Falling back to ClickerClass' \"The Clicker\"...");
 
                 return "ClickerClass/Items/Weapons/Clickers/TheClicker";
             }
         }
 
-        public override bool Autoload(ref string name) => ModLoader.GetMod("ClickerClass") != null && ModDependencyIsLoaded;
-
         public virtual ModCompatibility ModDependency => null;
-
-        public abstract bool ModDependencyIsLoaded { get; }
 
         public sealed override void SetStaticDefaults()
         {
@@ -34,6 +32,8 @@ namespace ClickerClassExpansion.Content
         public sealed override void SetDefaults()
         {
             ClickerCompatibilityCalls.SetClickerWeaponDefaults(item);
+            item.Size = Main.itemTexture[item.type]?.Size() ?? Vector2.Zero;
+
             SafeSetDefaults();
         }
 
