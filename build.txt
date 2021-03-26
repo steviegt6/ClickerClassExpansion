@@ -1,5 +1,5 @@
 displayName = The Clicker Class Expansion
-author = convicted tomatophile (Stevie), Citrus, Feedza
+author = convicted tomatophile (Stevie), Citrus, Feedza, babybluesheep, Knight
 version = 1.0.0
 sortAfter = ClickerClass
 modReferences = ClickerClass@1.2.5
