@@ -14,39 +14,39 @@ namespace ClickerClassExpansion.Content.ThoriumMod.Weapons
             Tooltip.SetDefault("Dealing damage grants you stacking damage" +
                 "\nAt 50 stacks, your damage peaks and will wither away the target for 3 seconds");
 
-            string effectName = ClickerCompatibilityCalls.RegisterClickEffect(mod, "DarkClickerWither", "Wither", "Damaging an enemy grants stacking damage, capping at 50", 1, Color.Black, (player, position, type, damage, knockback) =>
+            ClickerCompatibilityCalls.RegisterClickEffect(mod, "DarkClickerWither", "Wither", "Damaging an enemy grants stacking damage, capping at 50", 1, Color.Black, (player, position, type, damage, knockback) =>
             {
-                if (damage > 0)
-                {
-                    player.AddBuff(ModContent.BuffType<DarknessWithin>(), 600);
-                    player.GetThoriumPlayer().darkFocus++;
+                if (damage <= 0)
+                    return;
 
-                    if (player.GetThoriumPlayer().darkFocus >= 50)
+                player.AddBuff(ModDependency.Instance.BuffType("DarknessWithin"), 600);
+                player.SetDarkFocus(player.GetDarkFocus() + 1);
+
+                if (player.GetDarkFocus() < 50)
+                    return;
+
+                NPC closestNPC = null;
+                float closestDist = float.MaxValue;
+
+                foreach (NPC npc in Main.npc)
+                    if (npc.active && npc.Distance(position) < closestDist)
                     {
-                        NPC closestNPC = null;
-                        float closestDist = float.MaxValue;
-
-                        foreach (NPC npc in Main.npc)
-                            if (npc.active && npc.Distance(position) < closestDist)
-                            {
-                                closestNPC = npc;
-                                closestDist = npc.Distance(position);
-                            }
-
-                        if (closestDist <= 50f)
-                            closestNPC.AddBuff(ModContent.BuffType<Wither>(), 180);
+                        closestNPC = npc;
+                        closestDist = npc.Distance(position);
                     }
-                }
+
+                if (closestDist <= 50f)
+                    closestNPC?.AddBuff(ModDependency.Instance.BuffType("Wither"), 180);
             });
         }
 
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat) => flat += player.GetFlatShadowDamage();
+
         public override void SafeSetDefaults()
         {
-            shadowDamage = true;
-
             ClickerCompatibilityCalls.SetRadius(item, 4f);
             ClickerCompatibilityCalls.SetColor(item, Color.Black);
-            ClickerCompatibilityCalls.SetDust(item, ModContent.DustType<BlackDust>());
+            ClickerCompatibilityCalls.SetDust(item, ModLoader.GetMod("ThoriumMod").DustType("BlackDust"));
             ClickerCompatibilityCalls.AddEffect(item, "ClickerClassExpansion:DarkClickerWither");
 
             item.damage = 60;

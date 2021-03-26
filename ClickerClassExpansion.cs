@@ -30,15 +30,15 @@ namespace ClickerClassExpansion
 
             foreach (Type type in Code.GetTypes())
             {
-                if (!type.IsInstanceOfType(typeof(ModCompatibility)) || type.IsAbstract ||
-                    type.GetConstructor(new Type[0] { }) == null)
-                    continue;
+                if (type.IsSubclassOf(typeof(ModCompatibility)) && !type.IsAbstract &&
+                    type.GetConstructor(new Type[] { }) != null)
+                {
+                    if (!(Activator.CreateInstance(type) is ModCompatibility compat))
+                        continue;
 
-                if (!(Activator.CreateInstance(type) is ModCompatibility compat))
-                    continue;
-
-                modCompats.Add(compat.ToString(), compat);
-                compat.Load();
+                    modCompats.Add(compat.ToString(), compat);
+                    compat.Load();
+                }
             }
         }
 

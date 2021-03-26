@@ -23,7 +23,7 @@ namespace ClickerClassExpansion.Content
 
         public virtual ModCompatibility ModDependency => null;
 
-        public virtual bool ModDependencyIsLoaded => ModDependency?.IsLoaded ?? true;
+        public abstract bool ModDependencyIsLoaded { get; }
 
         public sealed override void SetStaticDefaults()
         {

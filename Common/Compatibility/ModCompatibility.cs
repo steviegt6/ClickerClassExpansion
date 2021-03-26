@@ -5,7 +5,7 @@ namespace ClickerClassExpansion.Common.Compatibility
 {
     public abstract class ModCompatibility
     {
-        private string _name { get; }
+        private readonly string _name;
 
         /// <summary>
         /// The instance of the specified Mod.
