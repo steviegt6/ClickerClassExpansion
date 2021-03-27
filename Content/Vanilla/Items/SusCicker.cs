@@ -17,7 +17,7 @@ namespace ClickerClassExpansion.Content.Vanilla.Items
         {
             DisplayName.SetDefault("sus cicker [sic]");
 
-            ClickerCompatibilityCalls.RegisterClickEffect(mod, $"Impostor", "Impostor", "Can mimic any other effect", 3, Color.Red, DoSuspiciousActivitiesEpic);
+            ClickerCompatibilityCalls.RegisterClickEffect(mod, "Impostor", "Impostor", "Can mimic any other effect", 3, Color.Red, DoSuspiciousActivitiesEpic);
 
             foreach (string effect in ClickerCompatibilityCalls.GetAllEffectNames().Where(effect => effect != $"{mod.Name}:Impostor"))
                 AvailableEffects.Add(effect);
