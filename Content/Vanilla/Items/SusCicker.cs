@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
-namespace ClickerClassExpansion.Content.Vanilla
+namespace ClickerClassExpansion.Content.Vanilla.Items
 {
     public class SusCicker : ModdedClickerItem
     {

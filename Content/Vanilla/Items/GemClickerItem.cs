@@ -1,11 +1,10 @@
 ﻿using ClickerClassExpansion.Common.Compatibility;
-using IL.Terraria;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Item = Terraria.Item;
 
-namespace ClickerClassExpansion.Content.Vanilla
+namespace ClickerClassExpansion.Content.Vanilla.Items
 {
     public abstract class GemClickerItem : ModdedClickerItem
     {
